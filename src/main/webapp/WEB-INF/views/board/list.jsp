@@ -1,33 +1,36 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>게시물 목록</title>
+<meta http-equiv="Content-Type" content= "text/html; charset=UTF-8">
+<!-- BootStrap CDN -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<title>게시글 목록</title>
 </head>
 <body>
-
-	<table>
-		<thead>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성일</th>
-			<th>작성자</th>
-			<th>조회수</th>
-		</thead>
-		<tbody>
-			<c:forEach items="${list}" var="list">
-				<tr>
-					<td>${list.bno }</td>
-					<td>${list.title }</td>
-					<td>${list.regDate }</td>
-					<td>${list.writer }</td>
-					<td>${list.viewCnt }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
+    <h3>게시글 목록</h3>
+    <button class="btn btn-primary" style="float : right;" onclick="location.href='/board/post'">작성</button>
+    <table class="table">
+        <tr>
+            <th>No</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성날짜</th>
+            <th>조회수</th>
+        </tr>
+        <c:forEach var="list" items="${list}">
+        <tr>
+            <td>${list.bno}</td>
+            <td><a href="/board/${list.bno}">${list.title}</a></td>
+            <td>${list.writer}</td>
+            <td><fmt:formatDate value="${list.regDate}" pattern="MM/ dd" /></td>
+            <td>${list.viewCnt}</td>
+        </tr>
+        </c:forEach>
+    </table>
 </body>
 </html>

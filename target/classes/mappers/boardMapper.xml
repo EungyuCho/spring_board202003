@@ -10,5 +10,46 @@
 			bno, title, content, writer, regDate, viewCnt
 		from tbl_board;
 	</select>
+		
+	<select id="boardCount" resultType="int">
+		select
+			count(*)
+		from tbl_board;
+	</select>
+	
+	<select id="boardDetail" parameterType="int" resultType="com.board.dto.BoardVO">
+		select
+			*
+		from tbl_board
+		where
+			bno = #{bno}
+	</select>
+	
+	<insert id="boardInsert" parameterType="com.board.dto.BoardVO">
+		insert into
+		tbl_board (title, content, writer)
+		values(#{title}, #{content}, #{writer})
+	</insert>
+	
+	<update id="boardUpdate" parameterType="com.board.dto.BoardVO">
+		update tbl_board
+			set
+		<if test="title != null">
+			title = #{title}
+		</if>
+        <if test="title != null and content != null"> , </if>
+		<if test="content != null">
+			content = #{content}
+		</if>
+        where bno = #{bno}
+	</update>
+	
+	<update id="hitPlus" parameterType="int">
+		update tbl_board set viewCnt = viewCnt+1 where bno = #{bno}	
+	</update>
+	
+	<delete id="boardDelete" parameterType="int">
+		delete from tbl_board where bno = #{bno}
+	</delete>
 	
 </mapper>
