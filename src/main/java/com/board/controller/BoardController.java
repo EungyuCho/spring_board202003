@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.board.common.Pagination;
 import com.board.dao.BoardDAO;
 import com.board.dto.BoardVO;
 import com.board.service.BoardService;
@@ -25,8 +27,17 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void getList(Model model) throws Exception{
-		List<BoardVO> list = boardService.list();
+	public void getList(Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) throws Exception{
+		int listCnt = 	boardService.boardCount();
+		
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt);
+		
+		List<BoardVO> list = boardService.list(pagination);
+
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("list", list);
 	}
 

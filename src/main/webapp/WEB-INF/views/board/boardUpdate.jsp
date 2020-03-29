@@ -3,19 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content= "text/html; charset=UTF-8">
-<!-- BootStrap CDN -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 수정</title>
 </head>
 <body>
-    <h3>게시글 수정</h3>
+    <h2>게시글 수정</h2>
     <div style="padding : 30px;">
         <form action="/board/post/${board.bno}" method="POST">
             <input type="hidden" name="_method" value="PATCH"/>
@@ -30,6 +25,7 @@
           <button type="submit" class="btn btn-default">수정</button>
         </form>
     </div>
+	<%@ include file="bootstrap.jsp" %>
 </body>
 </html>
 

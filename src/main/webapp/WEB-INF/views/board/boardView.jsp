@@ -3,17 +3,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content= "text/html; charset=UTF-8">
-<!-- BootStrap CDN -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<title>게시글 상세</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Detail</title>
+<style type="text/css">
+.form-group{
+    margin-right: 30px;
+}
+
+.btn-danger{
+	float: right;
+	margin-left: 10px;
+}
+
+.form-group > .btn-primary{
+	float: right;
+}
+
+#listBtn{
+    float: right;
+    margin-right: 40px;
+}
+
+</style>
 </head>
 <body>
-    <h3>게시글 상세</h3>
+ 
+ 
+<h2> 게시글 상세 </h2>
+      
+<button class="btn btn-primary" id="listBtn" onclick="location.href='/board/list'">리스트</button>
     <div style="padding : 30px;">
       <div class="form-group">
         <label>제목</label>
@@ -35,12 +56,13 @@
         <label>내용</label>
         <p>${board.content}</p>
       </div>
-      <div class="form-group">
-          <input type="button" value="수정" onclick='location.href="/board/post/${board.bno}"'>
-          <form:form action="/board/post/${board.bno}" method="DELETE">
-              <input type="submit" value="삭제">
-          </form:form>
-      </div>
-    </div>
+    </div> 	 	
+	<div class="form-group">
+	    <form:form action="/board/post/${board.bno}" method="DELETE">
+	        <input class="btn btn-danger"  type="submit" value="삭제">
+	    </form:form>
+	    <input  class="btn btn-primary" type="button" value="수정" onclick='location.href="/board/post/${board.bno}"'>
+	</div>
+<%@ include file="bootstrap.jsp" %>
 </body>
 </html>

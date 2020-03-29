@@ -8,7 +8,8 @@
 	<select id="list" resultType="com.board.dto.BoardVO">
 		select
 			bno, title, content, writer, regDate, viewCnt
-		from tbl_board;
+		from tbl_board
+		LIMIT #{startList}, #{listSize};
 	</select>
 		
 	<select id="boardCount" resultType="int">

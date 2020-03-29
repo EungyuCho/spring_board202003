@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.board.common.Pagination;
 import com.board.dto.BoardVO;
 
 @Repository
@@ -18,8 +19,8 @@ public class BoardDAOImpl implements BoardDAO{
 	private static String namespace = "com.board.mappers.board.";
 	
 	@Override
-	public List<BoardVO> list() throws Exception {
-		return sql.selectList(namespace + "list");
+	public List<BoardVO> list(Pagination pagenation) throws Exception {
+		return sql.selectList(namespace + "list", pagenation);
 	}
 
 	@Override
